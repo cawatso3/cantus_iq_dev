@@ -1,0 +1,23 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cantusiqdev-staging-195309-authRole",
+      "UnauthRoleArn": "arn:aws:iam::102406607691:role/amplify-cantusiqdev-staging-195309-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::102406607691:role/amplify-cantusiqdev-staging-195309-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-cantusiqdev-staging-195309-deployment",
+      "UnauthRoleName": "amplify-cantusiqdev-staging-195309-unauthRole",
+      "StackName": "amplify-cantusiqdev-staging-195309",
+      "StackId": "arn:aws:cloudformation:us-east-1:102406607691:stack/amplify-cantusiqdev-staging-195309/5b1629d0-bb8f-11ed-b001-12d8b75596fd",
+      "AmplifyAppId": "d1xizhd4teh9nq"
+    },
+    "categories": {
+      "api": {
+        "cantusiqdev": {}
+      },
+      "auth": {
+        "cantusiqdev": {}
+      }
+    }
+  }
+}

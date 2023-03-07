@@ -5,12 +5,6 @@ import { Auth, API, graphqlOperation } from 'aws-amplify';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import { useEffect, useState } from 'react';
 
-import {
-  MyProfileCard 
-} from '../src/ui-components';
- 
- <MyProfileCard />
-
 
 
 
@@ -55,7 +49,7 @@ function Home() {
         <h1>Email: {user.attributes.email}</h1>
         <h1>Username: {user.attributes.preferred_username}</h1>
 
-        <MyProfileCard />
+        
 
         <button onClick={signOut}>Sign out</button>
       </main>
