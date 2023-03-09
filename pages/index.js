@@ -8,6 +8,9 @@ import { useEffect, useState } from 'react';
 import {
   MyProfileCard 
 } from '../src/ui-components';
+
+import { DataStore } from '@aws-amplify/datastore';
+import { BasicUserTable } from '../src/models';
  
  <MyProfileCard />
 
@@ -32,11 +35,30 @@ function Home() {
   async function checkUser(){
     const user = await Auth.currentAuthenticatedUser()
     setUser(user)
-  //   if (user) {
-  //     // Create a new BasicUser record in your GraphQL API if the user doesn't already exist
-  //     const { data } = await API.graphql(graphqlOperation(createBasicUser, { input: { username: user.username, email: user.attributes.email } }));
-  //     console.log('created BasicUser', data.createBasicUser);
-  //   }
+  
+    
+     const existingUser = await DataStore.query(BasicUserTable, (c) => c.email.eq(user.attributes.email));
+    // const existingUser = await DataStore.query(BasicUserTable)
+
+    alert(JSON.stringify(existingUser))
+
+      // if (existingUser.length === 0) {
+      //   await DataStore.save(
+      //     new BasicUserTable({
+      //       "email": user.attributes.email,
+      //       "profile_pic": "https://images.unsplash.com/photo-1588466585717-f8041aec7875?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80",
+      //       "wallet_address": "cool",
+      //       "username": user.attributes.preferred_username
+      //     })
+      //   );
+      //   console.log('user added to table! ' + JSON.stringify(user.attributes.email));
+      //   alert('account created!')
+      // } else {
+      //   alert('user already exists with username: ' + user.attributes.preferred_username);
+      //   // console.log('existing user: '+ JSON.stringify(existingUser[0]));
+        
+      // }
+
   }
 
   if (!user) {

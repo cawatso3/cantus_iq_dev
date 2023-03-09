@@ -6,7 +6,7 @@ import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 
 import awsExports from '../src/aws-exports';
-import Sidebar from '../components/Sidebar';
+
 import AppBar from '../components/AppBar'
 
 
@@ -19,7 +19,7 @@ function App({ Component, pageProps }) {
   return (
   <>
   <AppBar />
-  {/* <Sidebar /> */}
+ 
   <Component {...pageProps} />
   </>
 

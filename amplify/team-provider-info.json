@@ -12,9 +12,6 @@
       "AmplifyAppId": "d1xizhd4teh9nq"
     },
     "categories": {
-      "api": {
-        "cantusiqdev": {}
-      },
       "auth": {
         "cantusiqdev": {}
       }

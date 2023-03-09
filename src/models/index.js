@@ -4,8 +4,8 @@ import { schema } from './schema';
 
 
 
-const { DefaultUserTable } = initSchema(schema);
+const { BasicUserTable } = initSchema(schema);
 
 export {
-  DefaultUserTable
+  BasicUserTable
 };

@@ -8,13 +8,13 @@
 import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { DefaultUserTable } from "../models";
+import { BasicUserTable } from "../models";
 import { fetchByPath, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
-export default function DefaultUserTableUpdateForm(props) {
+export default function BasicUserTableUpdateForm(props) {
   const {
     id: idProp,
-    defaultUserTable,
+    basicUserTable,
     onSuccess,
     onError,
     onSubmit,
@@ -24,47 +24,47 @@ export default function DefaultUserTableUpdateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    profile_pic: "",
-    username: "",
     email: "",
-    walletAddress: "",
+    profile_pic: "",
+    wallet_address: "",
+    username: "",
   };
+  const [email, setEmail] = React.useState(initialValues.email);
   const [profile_pic, setProfile_pic] = React.useState(
     initialValues.profile_pic
   );
-  const [username, setUsername] = React.useState(initialValues.username);
-  const [email, setEmail] = React.useState(initialValues.email);
-  const [walletAddress, setWalletAddress] = React.useState(
-    initialValues.walletAddress
+  const [wallet_address, setWallet_address] = React.useState(
+    initialValues.wallet_address
   );
+  const [username, setUsername] = React.useState(initialValues.username);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    const cleanValues = defaultUserTableRecord
-      ? { ...initialValues, ...defaultUserTableRecord }
+    const cleanValues = basicUserTableRecord
+      ? { ...initialValues, ...basicUserTableRecord }
       : initialValues;
-    setProfile_pic(cleanValues.profile_pic);
-    setUsername(cleanValues.username);
     setEmail(cleanValues.email);
-    setWalletAddress(cleanValues.walletAddress);
+    setProfile_pic(cleanValues.profile_pic);
+    setWallet_address(cleanValues.wallet_address);
+    setUsername(cleanValues.username);
     setErrors({});
   };
-  const [defaultUserTableRecord, setDefaultUserTableRecord] =
-    React.useState(defaultUserTable);
+  const [basicUserTableRecord, setBasicUserTableRecord] =
+    React.useState(basicUserTable);
   React.useEffect(() => {
     const queryData = async () => {
       const record = idProp
-        ? await DataStore.query(DefaultUserTable, idProp)
-        : defaultUserTable;
-      setDefaultUserTableRecord(record);
+        ? await DataStore.query(BasicUserTable, idProp)
+        : basicUserTable;
+      setBasicUserTableRecord(record);
     };
     queryData();
-  }, [idProp, defaultUserTable]);
-  React.useEffect(resetStateValues, [defaultUserTableRecord]);
+  }, [idProp, basicUserTable]);
+  React.useEffect(resetStateValues, [basicUserTableRecord]);
   const validations = {
-    profile_pic: [],
-    username: [],
     email: [],
-    walletAddress: [],
+    profile_pic: [],
+    wallet_address: [],
+    username: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -91,10 +91,10 @@ export default function DefaultUserTableUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          profile_pic,
-          username,
           email,
-          walletAddress,
+          profile_pic,
+          wallet_address,
+          username,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -125,7 +125,7 @@ export default function DefaultUserTableUpdateForm(props) {
             }
           });
           await DataStore.save(
-            DefaultUserTable.copyOf(defaultUserTableRecord, (updated) => {
+            BasicUserTable.copyOf(basicUserTableRecord, (updated) => {
               Object.assign(updated, modelFields);
             })
           );
@@ -138,63 +138,9 @@ export default function DefaultUserTableUpdateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "DefaultUserTableUpdateForm")}
+      {...getOverrideProps(overrides, "BasicUserTableUpdateForm")}
       {...rest}
     >
-      <TextField
-        label="Profile pic"
-        isRequired={false}
-        isReadOnly={false}
-        value={profile_pic}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              profile_pic: value,
-              username,
-              email,
-              walletAddress,
-            };
-            const result = onChange(modelFields);
-            value = result?.profile_pic ?? value;
-          }
-          if (errors.profile_pic?.hasError) {
-            runValidationTasks("profile_pic", value);
-          }
-          setProfile_pic(value);
-        }}
-        onBlur={() => runValidationTasks("profile_pic", profile_pic)}
-        errorMessage={errors.profile_pic?.errorMessage}
-        hasError={errors.profile_pic?.hasError}
-        {...getOverrideProps(overrides, "profile_pic")}
-      ></TextField>
-      <TextField
-        label="Username"
-        isRequired={false}
-        isReadOnly={false}
-        value={username}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              profile_pic,
-              username: value,
-              email,
-              walletAddress,
-            };
-            const result = onChange(modelFields);
-            value = result?.username ?? value;
-          }
-          if (errors.username?.hasError) {
-            runValidationTasks("username", value);
-          }
-          setUsername(value);
-        }}
-        onBlur={() => runValidationTasks("username", username)}
-        errorMessage={errors.username?.errorMessage}
-        hasError={errors.username?.hasError}
-        {...getOverrideProps(overrides, "username")}
-      ></TextField>
       <TextField
         label="Email"
         isRequired={false}
@@ -204,10 +150,10 @@ export default function DefaultUserTableUpdateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              profile_pic,
-              username,
               email: value,
-              walletAddress,
+              profile_pic,
+              wallet_address,
+              username,
             };
             const result = onChange(modelFields);
             value = result?.email ?? value;
@@ -223,31 +169,85 @@ export default function DefaultUserTableUpdateForm(props) {
         {...getOverrideProps(overrides, "email")}
       ></TextField>
       <TextField
-        label="Wallet address"
+        label="Profile pic"
         isRequired={false}
         isReadOnly={false}
-        value={walletAddress}
+        value={profile_pic}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              profile_pic,
-              username,
               email,
-              walletAddress: value,
+              profile_pic: value,
+              wallet_address,
+              username,
             };
             const result = onChange(modelFields);
-            value = result?.walletAddress ?? value;
+            value = result?.profile_pic ?? value;
           }
-          if (errors.walletAddress?.hasError) {
-            runValidationTasks("walletAddress", value);
+          if (errors.profile_pic?.hasError) {
+            runValidationTasks("profile_pic", value);
           }
-          setWalletAddress(value);
+          setProfile_pic(value);
         }}
-        onBlur={() => runValidationTasks("walletAddress", walletAddress)}
-        errorMessage={errors.walletAddress?.errorMessage}
-        hasError={errors.walletAddress?.hasError}
-        {...getOverrideProps(overrides, "walletAddress")}
+        onBlur={() => runValidationTasks("profile_pic", profile_pic)}
+        errorMessage={errors.profile_pic?.errorMessage}
+        hasError={errors.profile_pic?.hasError}
+        {...getOverrideProps(overrides, "profile_pic")}
+      ></TextField>
+      <TextField
+        label="Wallet address"
+        isRequired={false}
+        isReadOnly={false}
+        value={wallet_address}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              email,
+              profile_pic,
+              wallet_address: value,
+              username,
+            };
+            const result = onChange(modelFields);
+            value = result?.wallet_address ?? value;
+          }
+          if (errors.wallet_address?.hasError) {
+            runValidationTasks("wallet_address", value);
+          }
+          setWallet_address(value);
+        }}
+        onBlur={() => runValidationTasks("wallet_address", wallet_address)}
+        errorMessage={errors.wallet_address?.errorMessage}
+        hasError={errors.wallet_address?.hasError}
+        {...getOverrideProps(overrides, "wallet_address")}
+      ></TextField>
+      <TextField
+        label="Username"
+        isRequired={false}
+        isReadOnly={false}
+        value={username}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              email,
+              profile_pic,
+              wallet_address,
+              username: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.username ?? value;
+          }
+          if (errors.username?.hasError) {
+            runValidationTasks("username", value);
+          }
+          setUsername(value);
+        }}
+        onBlur={() => runValidationTasks("username", username)}
+        errorMessage={errors.username?.errorMessage}
+        hasError={errors.username?.hasError}
+        {...getOverrideProps(overrides, "username")}
       ></TextField>
       <Flex
         justifyContent="space-between"
@@ -260,7 +260,7 @@ export default function DefaultUserTableUpdateForm(props) {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || defaultUserTable)}
+          isDisabled={!(idProp || basicUserTable)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -272,7 +272,7 @@ export default function DefaultUserTableUpdateForm(props) {
             type="submit"
             variation="primary"
             isDisabled={
-              !(idProp || defaultUserTable) ||
+              !(idProp || basicUserTable) ||
               Object.values(errors).some((e) => e?.hasError)
             }
             {...getOverrideProps(overrides, "SubmitButton")}

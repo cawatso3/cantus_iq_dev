@@ -7,5 +7,5 @@
 export { default as MyProfileCard } from "./MyProfileCard";
 export { default as Username } from "./Username";
 export { default as studioTheme } from "./studioTheme";
-export { default as DefaultUserTableCreateForm } from "./DefaultUserTableCreateForm";
-export { default as DefaultUserTableUpdateForm } from "./DefaultUserTableUpdateForm";
+export { default as BasicUserTableCreateForm } from "./BasicUserTableCreateForm";
+export { default as BasicUserTableUpdateForm } from "./BasicUserTableUpdateForm";

@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "DefaultUserTable": {
-            "name": "DefaultUserTable",
+        "BasicUserTable": {
+            "name": "BasicUserTable",
             "fields": {
                 "id": {
                     "name": "id",
@@ -10,8 +10,22 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "profile_img": {
-                    "name": "profile_img",
+                "email": {
+                    "name": "email",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "profile_pic": {
+                    "name": "profile_pic",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "wallet_address": {
+                    "name": "wallet_address",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -19,13 +33,6 @@ export const schema = {
                 },
                 "username": {
                     "name": "username",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "email": {
-                    "name": "email",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -49,7 +56,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "DefaultUserTables",
+            "pluralName": "BasicUserTables",
             "attributes": [
                 {
                     "type": "model",
@@ -77,5 +84,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.3.5",
-    "version": "31fe88fe9983344e45f898aa945e904b"
+    "version": "084e50548b4dd4b9c4b5eea55827c97a"
 };

@@ -1,6 +1,8 @@
-type DefaultUserTable @model @auth(rules: [{allow: public}]) {
+type BasicUserTable @model @auth(rules: [{allow: public}]) {
   id: ID!
-  profile_img: String
-  username: String
   email: String
+  profile_pic: String
+  wallet_address: String
+  username: String
 }
+ 

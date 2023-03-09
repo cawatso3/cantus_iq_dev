@@ -6,34 +6,36 @@ import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 
 
 
-type EagerDefaultUserTable = {
+type EagerBasicUserTable = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<DefaultUserTable, 'id'>;
+    identifier: ManagedIdentifier<BasicUserTable, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly profile_img?: string | null;
-  readonly username?: string | null;
   readonly email?: string | null;
+  readonly profile_pic?: string | null;
+  readonly wallet_address?: string | null;
+  readonly username?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-type LazyDefaultUserTable = {
+type LazyBasicUserTable = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<DefaultUserTable, 'id'>;
+    identifier: ManagedIdentifier<BasicUserTable, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly profile_img?: string | null;
-  readonly username?: string | null;
   readonly email?: string | null;
+  readonly profile_pic?: string | null;
+  readonly wallet_address?: string | null;
+  readonly username?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-export declare type DefaultUserTable = LazyLoading extends LazyLoadingDisabled ? EagerDefaultUserTable : LazyDefaultUserTable
+export declare type BasicUserTable = LazyLoading extends LazyLoadingDisabled ? EagerBasicUserTable : LazyBasicUserTable
 
-export declare const DefaultUserTable: (new (init: ModelInit<DefaultUserTable>) => DefaultUserTable) & {
-  copyOf(source: DefaultUserTable, mutator: (draft: MutableModel<DefaultUserTable>) => MutableModel<DefaultUserTable> | void): DefaultUserTable;
+export declare const BasicUserTable: (new (init: ModelInit<BasicUserTable>) => BasicUserTable) & {
+  copyOf(source: BasicUserTable, mutator: (draft: MutableModel<BasicUserTable>) => MutableModel<BasicUserTable> | void): BasicUserTable;
 }

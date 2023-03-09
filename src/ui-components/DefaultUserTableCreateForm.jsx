@@ -23,26 +23,32 @@ export default function DefaultUserTableCreateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    profile_img: "",
+    profile_pic: "",
     username: "",
     email: "",
+    walletAddress: "",
   };
-  const [profile_img, setProfile_img] = React.useState(
-    initialValues.profile_img
+  const [profile_pic, setProfile_pic] = React.useState(
+    initialValues.profile_pic
   );
   const [username, setUsername] = React.useState(initialValues.username);
   const [email, setEmail] = React.useState(initialValues.email);
+  const [walletAddress, setWalletAddress] = React.useState(
+    initialValues.walletAddress
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    setProfile_img(initialValues.profile_img);
+    setProfile_pic(initialValues.profile_pic);
     setUsername(initialValues.username);
     setEmail(initialValues.email);
+    setWalletAddress(initialValues.walletAddress);
     setErrors({});
   };
   const validations = {
-    profile_img: [],
+    profile_pic: [],
     username: [],
     email: [],
+    walletAddress: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -69,9 +75,10 @@ export default function DefaultUserTableCreateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          profile_img,
+          profile_pic,
           username,
           email,
+          walletAddress,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -118,30 +125,31 @@ export default function DefaultUserTableCreateForm(props) {
       {...rest}
     >
       <TextField
-        label="Profile img"
+        label="Profile pic"
         isRequired={false}
         isReadOnly={false}
-        value={profile_img}
+        value={profile_pic}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              profile_img: value,
+              profile_pic: value,
               username,
               email,
+              walletAddress,
             };
             const result = onChange(modelFields);
-            value = result?.profile_img ?? value;
+            value = result?.profile_pic ?? value;
           }
-          if (errors.profile_img?.hasError) {
-            runValidationTasks("profile_img", value);
+          if (errors.profile_pic?.hasError) {
+            runValidationTasks("profile_pic", value);
           }
-          setProfile_img(value);
+          setProfile_pic(value);
         }}
-        onBlur={() => runValidationTasks("profile_img", profile_img)}
-        errorMessage={errors.profile_img?.errorMessage}
-        hasError={errors.profile_img?.hasError}
-        {...getOverrideProps(overrides, "profile_img")}
+        onBlur={() => runValidationTasks("profile_pic", profile_pic)}
+        errorMessage={errors.profile_pic?.errorMessage}
+        hasError={errors.profile_pic?.hasError}
+        {...getOverrideProps(overrides, "profile_pic")}
       ></TextField>
       <TextField
         label="Username"
@@ -152,9 +160,10 @@ export default function DefaultUserTableCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              profile_img,
+              profile_pic,
               username: value,
               email,
+              walletAddress,
             };
             const result = onChange(modelFields);
             value = result?.username ?? value;
@@ -178,9 +187,10 @@ export default function DefaultUserTableCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              profile_img,
+              profile_pic,
               username,
               email: value,
+              walletAddress,
             };
             const result = onChange(modelFields);
             value = result?.email ?? value;
@@ -194,6 +204,33 @@ export default function DefaultUserTableCreateForm(props) {
         errorMessage={errors.email?.errorMessage}
         hasError={errors.email?.hasError}
         {...getOverrideProps(overrides, "email")}
+      ></TextField>
+      <TextField
+        label="Wallet address"
+        isRequired={false}
+        isReadOnly={false}
+        value={walletAddress}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              profile_pic,
+              username,
+              email,
+              walletAddress: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.walletAddress ?? value;
+          }
+          if (errors.walletAddress?.hasError) {
+            runValidationTasks("walletAddress", value);
+          }
+          setWalletAddress(value);
+        }}
+        onBlur={() => runValidationTasks("walletAddress", walletAddress)}
+        errorMessage={errors.walletAddress?.errorMessage}
+        hasError={errors.walletAddress?.hasError}
+        {...getOverrideProps(overrides, "walletAddress")}
       ></TextField>
       <Flex
         justifyContent="space-between"

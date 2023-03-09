@@ -5,6 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
+import { BasicUserTable } from "../models";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { FlexProps, ImageProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
@@ -20,6 +21,8 @@ export declare type MyProfileCardOverridesProps = {
     Button?: PrimitiveOverrideProps<FlexProps>;
 } & EscapeHatchProps;
 export declare type MyProfileCardProps = React.PropsWithChildren<Partial<FlexProps> & {
+    basicUserTable?: BasicUserTable;
+} & {
     overrides?: MyProfileCardOverridesProps | undefined | null;
 }>;
 export default function MyProfileCard(props: MyProfileCardProps): React.ReactElement;

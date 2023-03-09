@@ -9,7 +9,7 @@ import * as React from "react";
 import { getOverrideProps, useAuth } from "@aws-amplify/ui-react/internal";
 import { Flex, Image, Text, View } from "@aws-amplify/ui-react";
 export default function MyProfileCard(props) {
-  const { overrides, ...rest } = props;
+  const { basicUserTable, overrides, ...rest } = props;
   const authAttributes = useAuth().user?.attributes ?? {};
   return (
     <Flex
@@ -37,6 +37,7 @@ export default function MyProfileCard(props) {
         borderRadius="160px"
         padding="0px 0px 0px 0px"
         objectFit="cover"
+        src={basicUserTable?.profile_pic}
         {...getOverrideProps(overrides, "image")}
       ></Image>
       <Flex

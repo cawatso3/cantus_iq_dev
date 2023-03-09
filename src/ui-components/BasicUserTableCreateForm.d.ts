@@ -12,34 +12,34 @@ export declare type ValidationResponse = {
     errorMessage?: string;
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
-export declare type DefaultUserTableCreateFormInputValues = {
-    profile_pic?: string;
-    username?: string;
+export declare type BasicUserTableCreateFormInputValues = {
     email?: string;
-    walletAddress?: string;
+    profile_pic?: string;
+    wallet_address?: string;
+    username?: string;
 };
-export declare type DefaultUserTableCreateFormValidationValues = {
-    profile_pic?: ValidationFunction<string>;
-    username?: ValidationFunction<string>;
+export declare type BasicUserTableCreateFormValidationValues = {
     email?: ValidationFunction<string>;
-    walletAddress?: ValidationFunction<string>;
+    profile_pic?: ValidationFunction<string>;
+    wallet_address?: ValidationFunction<string>;
+    username?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type DefaultUserTableCreateFormOverridesProps = {
-    DefaultUserTableCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
-    profile_pic?: PrimitiveOverrideProps<TextFieldProps>;
-    username?: PrimitiveOverrideProps<TextFieldProps>;
+export declare type BasicUserTableCreateFormOverridesProps = {
+    BasicUserTableCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
     email?: PrimitiveOverrideProps<TextFieldProps>;
-    walletAddress?: PrimitiveOverrideProps<TextFieldProps>;
+    profile_pic?: PrimitiveOverrideProps<TextFieldProps>;
+    wallet_address?: PrimitiveOverrideProps<TextFieldProps>;
+    username?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
-export declare type DefaultUserTableCreateFormProps = React.PropsWithChildren<{
-    overrides?: DefaultUserTableCreateFormOverridesProps | undefined | null;
+export declare type BasicUserTableCreateFormProps = React.PropsWithChildren<{
+    overrides?: BasicUserTableCreateFormOverridesProps | undefined | null;
 } & {
     clearOnSuccess?: boolean;
-    onSubmit?: (fields: DefaultUserTableCreateFormInputValues) => DefaultUserTableCreateFormInputValues;
-    onSuccess?: (fields: DefaultUserTableCreateFormInputValues) => void;
-    onError?: (fields: DefaultUserTableCreateFormInputValues, errorMessage: string) => void;
-    onChange?: (fields: DefaultUserTableCreateFormInputValues) => DefaultUserTableCreateFormInputValues;
-    onValidate?: DefaultUserTableCreateFormValidationValues;
+    onSubmit?: (fields: BasicUserTableCreateFormInputValues) => BasicUserTableCreateFormInputValues;
+    onSuccess?: (fields: BasicUserTableCreateFormInputValues) => void;
+    onError?: (fields: BasicUserTableCreateFormInputValues, errorMessage: string) => void;
+    onChange?: (fields: BasicUserTableCreateFormInputValues) => BasicUserTableCreateFormInputValues;
+    onValidate?: BasicUserTableCreateFormValidationValues;
 } & React.CSSProperties>;
-export default function DefaultUserTableCreateForm(props: DefaultUserTableCreateFormProps): React.ReactElement;
+export default function BasicUserTableCreateForm(props: BasicUserTableCreateFormProps): React.ReactElement;
